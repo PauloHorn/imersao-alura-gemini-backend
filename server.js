@@ -1,57 +1,15 @@
 import express from "express";
+// Importa o framework Express.js para criar a aplicação web.
 
-const posts = [
-    {
-      id: 1,
-      descricao: "Uma foto teste",
-      imagem: "https://placecats.com/millie/300/150"
-    },
-    {
-      id: 2,
-      descricao: "Gato fofo dormindo",
-      imagem: "https://placekitten.com/400/200"
-    },
-    {
-      id: 3,
-      descricao: "Paisagem incrível",
-      imagem: "https://picsum.photos/id/237/300/200"
-    },
-    {
-      id: 4,
-      descricao: "Comida deliciosa",
-      imagem: "https://loremflickr.com/320/240/food"
-    },
-    {
-      id: 5,
-      descricao: "Cachorro brincando",
-      imagem: "https://random.dog/woof.jpg"
-    },
-    {
-      id: 6,
-      descricao: "Gráfico de dados",
-      imagem: "https://www.chartjs.org/docs/latest/samples/line.png"
-    }
-  ];
+import routes from "./src/routes/postsRoutes.js";
 
 const app = express();
+// Cria uma instância do Express, que será o núcleo da aplicação.
 
-app.use(express.json());
+routes(app)
 
 app.listen(3000, () => {
-    console.log("Servidor escutando...");
+  console.log("Servidor escutando...");
 });
+// Inicia o servidor Express na porta 3000 e exibe uma mensagem no console quando o servidor estiver ouvindo as requisições.
 
-app.get("/posts", (req, res) => {
-    res.status(200).json(posts);
-});
-
-function buscarPostPorID(id) {
-    return posts.findIndex((post) => {
-        return post.id === Number(id)
-    })
-};
-
-app.get("/posts/:id", (req, res) => {
-    const index = buscarPostPorID(req.params.id)
-    res.status(200).json(posts[index]);
-});
