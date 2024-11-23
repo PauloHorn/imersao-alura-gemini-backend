@@ -12,7 +12,7 @@ export async function getTodosPosts () {
     // Executa uma consulta para encontrar todos os documentos (posts) na coleção e retorna os resultados como um array.
   };
 
-export async function crirPost(novoPost) {
+export async function criarPost(novoPost) {
   const db = conexao.db("imersao-backend")
   const colecao = db.collection("posts")  
   return colecao.insertOne(novoPost)
