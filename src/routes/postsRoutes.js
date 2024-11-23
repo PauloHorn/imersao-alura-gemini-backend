@@ -1,11 +1,13 @@
 import express from "express";
-import { listarPosts } from "../controllers/postController.js";
+import { listarPosts, postarNovoPost } from "../controllers/postController.js";
 
 const routes = (app) => {
     app.use(express.json());
-// Habilita o middleware `express.json()` para permitir que a aplicação receba e analise dados no formato JSON.
-
-app.get("/posts", listarPosts);
+    // Permite que o servidor interprete requisições com corpo no formatoJSON
+    app.get("/posts", listarPosts);
+    //rota para buscar todos os posts
+    app.post("/posts", postarNovoPost)
+    //rota para criar um novo post
 }
 
 export default routes;
